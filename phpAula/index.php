@@ -29,6 +29,14 @@
     
     ?>
 
+    <?php
+    
+    $nome = "stuart";
+    $num =  15;
+    
+    var_dump($num);
+    ?>
+
 
 
     <script src="script.js"></script>
