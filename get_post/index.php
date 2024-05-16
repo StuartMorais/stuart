@@ -22,7 +22,7 @@
                 echo "<br>Negativo";
             }
             else{
-                echo "<br>O numero é 0";
+                echo "<br>O numero é";
             }
         
         ?>
