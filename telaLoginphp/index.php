@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +17,9 @@
             </form>
 
             <?php
-
-                if(isset($_POST['login']) == 'bruh' && isset($_POST['senha'])== '123'){
-                    echo 'senha correta';
-                }elseif(isset($_POST['login']) != 'bruh' && isset($_POST['senha'])!= '123'){
-                    echo 'senha errada';
+        
+                if(isset($_POST['login'])== "stuart" && isset($_POST['senha']) == "123"){
+                    header("location:home.php");
                 }
 
             ?>
