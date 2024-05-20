@@ -9,6 +9,85 @@
 </head>
 
 <body>
+    <?php
+        
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            $reSenha = $_POST['reSenha'];
+            $pNome = $_POST['primeiroNome'];
+            $sNome = $_POST['sobreNome'];
+            $exp = $_POST['exp'];
+        
+            //verificador do email
+            if(empty($email)){
+                $errorEmail = "por favor, informe o email";
+            } else {
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errorEmail = "formato invalido";
+                } else {
+                    $errorEmail = 'nenhum';
+                }
+            }
+        
+            //verificador da senha
+            if(empty($senha)){
+                $errorSenha = "por favor, informe senha";
+            }else{
+                if(strlen($senha)<6){
+                    $errorSenha = "Senha tem que ter mais que 6 characteres";
+                }else{
+                    $errorSenha = "nenhum";
+                }
+            }
+        
+            //verificador do repetir senha
+            if(empty($reSenha)){
+                $errorReSenha = "por favor, informe senha";
+            }else{
+                if($reSenha != $senha){
+                    $errorReSenha = "Senhas diferentes";
+                }else{
+                    $errorReSenha = "nenhum";
+                }
+            }
+        
+            //verificador do nome
+            if (empty($pNome)) {
+                $erropNome = "por favor, informe nome";
+            } else {
+                if (!preg_match("/^[a-zA-Z-' ]*$/",$pNome)) {
+                    $erropNome = "Only letters and white space allowed";
+                }else{
+                    $erropNome = "nenhum";
+                }
+                
+            }
+        
+            //verificador do sobrenome
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
+                $errosNome = "Only letters and white space allowed";
+            } else {
+                if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
+                    $errosNome = "Only letters and white space allowed";
+                } else{
+                    $errosNome = "nenhum";
+                }
+            }
+        
+            //verificador do txt
+            if(empty($exp)){
+                $errorExp = "Por favor, escreva algo";
+            } else {
+                $errorExp = "nenhum";
+            }
+        
+            if($errorEmail == "nenhum" && $errorSenha == "nenhum" && $errorReSenha = "nenhum" && $erropNome == "nenhum" && $errosNome == "nenhum" && $errorExp = "nenhum"){
+                header("location:obrigado.php");
+            }
+        }
+    
+    ?>
 
     <form action="" method="POST">
         <div class="mb-3">
@@ -123,87 +202,6 @@
 
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-
-    <?php
-    
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $reSenha = $_POST['reSenha'];
-            $pNome = $_POST['primeiroNome'];
-            $sNome = $_POST['sobreNome'];
-            $exp = $_POST['exp'];
-
-            //verificador do email
-            if(empty($email)){
-                $errorEmail = "por favor, informe o email";
-            } else {
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $errorEmail = "Invalid email format";
-                } else {
-                    $errorEmail = 'nenhum';
-                }
-            }
-
-            //verificador da senha
-            if(empty($senha)){
-                $errorSenha = "por favor, informe senha";
-            }else{
-                if(strlen($senha)<6){
-                    $errorSenha = "Senha tem que ter mais que 6 characteres";
-                }else{
-                    $errorSenha = "nenhum";
-                }
-            }
-
-            //verificador do repetir senha
-            if(empty($reSenha)){
-                $errorReSenha = "por favor, informe senha";
-            }else{
-                if($reSenha != $senha){
-                    $errorReSenha = "Senhas diferentes";
-                }else{
-                    $errorReSenha = "nenhum";
-                }
-            }
-
-            //verificador do nome
-            if (empty($pNome)) {
-                $erropNome = "por favor, informe nome";
-            } else {
-                if (!preg_match("/^[a-zA-Z-' ]*$/",$pNome)) {
-                    $erropNome = "Only letters and white space allowed";
-                }else{
-                    $erropNome = "nenhum";
-                }
-                
-            }
-
-            //verificador do sobrenome
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
-                $errosNome = "Only letters and white space allowed";
-            } else {
-                if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
-                    $errosNome = "Only letters and white space allowed";
-                } else{
-                    $errosNome = "nenhum";
-                }
-            }
-
-            //verificador do txt
-            if(empty($exp)){
-                $errorExp = "Por favor, escreva algo";
-            } else {
-                $errorExp = "nenhum";
-            }
-
-            if($errorEmail == "nenhum" && $errorSenha == "nenhum" && $errorReSenha = "nenhum" && $erropNome == "nenhum" && $errosNome == "nenhum" && $errorExp = "nenhum"){
-                header("location:obrigado.php");
-            }
-        }
-
-    ?>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
