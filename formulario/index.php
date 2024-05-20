@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
-<body>
+<body class="mt-5">
     <?php
         
         if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -65,15 +66,20 @@
             }
         
             //verificador do sobrenome
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
-                $errosNome = "Only letters and white space allowed";
-            } else {
+            if(empty($sNome)){
+                $errosNome = "por favor, informe um sobre nome";
+            }else{
                 if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
                     $errosNome = "Only letters and white space allowed";
-                } else{
-                    $errosNome = "nenhum";
+                } else {
+                    if (!preg_match("/^[a-zA-Z-' ]*$/",$sNome)) {
+                        $errosNome = "Only letters and white space allowed";
+                    } else{
+                        $errosNome = "nenhum";
+                    }
                 }
             }
+            
         
             //verificador do txt
             if(empty($exp)){
@@ -89,9 +95,9 @@
     
     ?>
 
-    <form action="" method="POST">
+    <form action="" method="POST" novalidate>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <label for="exampleFormControlInput1" class="form-label" >Email address <i class="mdi mdi-information-outline" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campo obrigatorio!"></i></label>
             <!-- input email -->
             <input type="email" name="email" class="form-control <?php if(isset($errorEmail)){if($errorEmail != "nenhum"){echo "is-invalid";}} ?>" id="exampleFormControlInput1" placeholder="name@example.com">
 
@@ -110,7 +116,7 @@
 
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">senha</label>
+            <label for="exampleFormControlInput1" class="form-label">Senha <span class="mdi mdi-information-outline"></span></label>
             <!-- input senha -->
             <input type="password" name="senha" class="form-control <?php if(isset($errorSenha)){if($errorSenha != "nenhum"){echo "is-invalid";}} ?>" id="exampleFormControlInput1">
 
@@ -147,10 +153,13 @@
             </div>
 
         </div>
+
+        <!-- bloco de nome -->
         <div class="input-group mb-3">
+
             <span class="input-group-text">Primeiro nome</span>
 
-            <input type="text" id="cidade" name="primeiroNome" class="form-control <?php if(isset($erropNome)){if($erropNome != "nenhum"){echo "is-invalid";}} ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="margin-right: 5px;">
+            <input type="text" id="cidade" name="primeiroNome" class="form-control <?php if(isset($erropNome)){if($erropNome != "nenhum"){echo "is-invalid";}} ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 
             <!-- Validação -->
             <div class="invalid-feedback">
@@ -182,6 +191,8 @@
             </div>
 
         </div>
+
+        <!-- texto sobre experiencia -->
         <div class="form-floating mb-3">
 
             <textarea class="form-control <?php if(isset($errorExp)){if($errorExp != "nenhum"){echo "is-invalid";}} ?>" name="exp" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
@@ -200,10 +211,15 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary"><span class="mdi mdi-send"></span> Enviar</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
 
 </html>
