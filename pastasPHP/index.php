@@ -12,10 +12,10 @@
     //     echo "Pasta Ja existe";
     // }
 
-    //criação de pasta com permissão
+    //criação de pasta com permissão/ 0777 liberado para geral 
     if(!is_dir($pasta)){
         echo "pasta criada";
-        mkdir($pasta, 755, true);
+        mkdir($pasta, 0755, true);
 
     } else { //se a pasta ja existir ele modifica o nome
         rename($pasta, "cavalo");
@@ -23,5 +23,5 @@
 
     //para deletar pasta usar o rmdir
 
-    
+
 ?>
