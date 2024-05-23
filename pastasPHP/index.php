@@ -38,26 +38,30 @@
 
     $caminhoArquivo = $pasta.$nomeArquivo;
 
-    if(file_exists($caminhoArquivo) && is_file($caminhoArquivo)){//se arquivo existe e se arquivo é um arquivo
-                                                                //file_exists funciona tanto para pasta quanto para arquivo
-                                                                //is_file pergunta se é um arquivo
+    // if(file_exists($caminhoArquivo) && is_file($caminhoArquivo)){//se arquivo existe e se arquivo é um arquivo
+    //                                                             //file_exists funciona tanto para pasta quanto para arquivo
+    //                                                             //is_file pergunta se é um arquivo
 
-        $abrirArquivo = fopen($caminhoArquivo, 'r');            // abre o arquivo no modo r
+    //     $abrirArquivo = fopen($caminhoArquivo, 'r');            // abre o arquivo no modo r
 
-        while(!feof($abrirArquivo)){                             //avisa quando chega no fim do arquivo
-            echo fgets($abrirArquivo)."<br>";                           //imprime a linha
-        }
-    }
+    //     while(!feof($abrirArquivo)){                             //avisa quando chega no fim do arquivo
+    //         echo fgets($abrirArquivo)."<br>";                           //imprime a linha
+    //     }
+    // }
+
+
+    //deleta arquivos dentro da pasta e exclui a pasta
 
     if(is_dir($pasta)){
         foreach(scandir($pasta) as $lixo){//vai atribuir todos os arquivos dentro da pasta apra a variavel arquivo
-            $caminho = $pasta.$lixo; //caminho recebe o caminho do arquivo dentro da pasta
-
+            $caminho = $pasta.$lixo; //caminho recebe o caminho do arquivo dentro da pas
             if(is_file($caminho)){
                 unlink($caminho); //deleta os arquivos armazendos na variavel
+                echo "<br>arquivo $lixo na pasta $pasta foi deletado";
             }
         }
         rmdir($pasta); // so pode deletar pastas casa a pasta esteja vazia
+        echo "<br>pasta deletada";
     }
 
 ?>
