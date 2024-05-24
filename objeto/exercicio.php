@@ -21,10 +21,16 @@
                 $this->ano = $ano;
                 $this->paginas = $paginas;
             }
+
+            public function mensagem(){
+                echo $this-> titulo;
+            }
         }
 
         $livro1 = new livro ("Viagens","Stuart", "2024", "46");
 
+        echo "<h1>", $livro1->mensagem(), "</h1>";
+        
         echo "O mais novo lançamento do escritor $livro1->autor é o o tão esperado $livro1->titulo quer será lançado ainda em $livro1->ano com $livro1->paginas paginas";
     
     ?>
