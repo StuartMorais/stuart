@@ -13,38 +13,16 @@
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-            $titulo = $_GET['titulo'];
-            $autor = $_GET['autor'];
-            $ano = $_GET['ano'];
-            $paginas = $_GET['paginas'];
+            $titulo = $_POST['titulo'];
+            $autor = $_POST['autor'];
+            $ano = $_POST['ano'];
+            $paginas = $_POST['paginas'];
 
-            $sql = $pdo -> prepare("INSERT INTO livro VALUES (null, '$titulo','$ano',  '$paginas', '$autor');");
-            $sql -> execute();
+            $sql = $pdo -> prepare("INSERT INTO livro VALUES (null, ?, ?, ?, ?);");
+            $sql -> execute(array($titulo, $ano, $paginas, $autor));
 
+            header("location:vlw.php");
         }
-
-    // $sql = $pdo -> prepare("INSERT INTO livro VALUES (NULL,'Viagens','2000-11-11',15,'Stuart')");
-    // $sql -> execute();
-    
-        // class livro{
-        //     public $titulo;
-        //     public $autor;
-        //     public $ano;
-        //     public $paginas;
-
-        //     public function __construct($titulo,$autor,$ano,$paginas)
-        //     {
-        //         $this->titulo = $titulo;
-        //         $this->autor = $autor;
-        //         $this->ano = $ano;
-        //         $this->paginas = $paginas;
-        //     }
-
-        //     public function mensagem(){
-        //         echo $this-> titulo;
-        //     }
-        // }
-    
     ?>
 
     <form action="" method="POST">
