@@ -11,7 +11,13 @@
 
 <body class="mt-5">
     <?php
-        
+        $servidor="localhost";
+        $usuario="root";
+        $senha="";
+        $banco="formulario";
+    
+        $pdo = new PDO("mysql:host=$servidor;dbname=$banco","$usuario","$senha");
+
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $email = $_POST['email'];
             $senha = $_POST['senha'];
@@ -89,6 +95,8 @@
             }
         
             if($errorEmail == "nenhum" && $errorSenha == "nenhum" && $errorReSenha = "nenhum" && $erropNome == "nenhum" && $errosNome == "nenhum" && $errorExp = "nenhum"){
+                $sql = $pdo -> prepare("INSERT INTO info VALUES (null, '$email','$senha', '$reSenha',  '$pNome', '$sNome', '$exp');");
+                $sql -> execute();
                 header("location:obrigado.php");
             }
         }
