@@ -35,17 +35,17 @@
 
                 <?php
                 
-                    foreach($dados as $chave => $valor){
+                    foreach($dados as $chave){
 
                             //tem que fazer echo junto com o tr se não a table aquebra
                         echo "
                             <tr>
                             
-                                <th scope='row'>".$valor['id_livro']."</th>
-                                <td>".$valor['titulo']."</td>
-                                <td>".$valor['ano_cri']."</td>
-                                <td>".$valor['qtd_paginas']."</td>
-                                <td>".$valor['autor']."</td>
+                                <th scope='row'>$chave[id_livro]</th>
+                                <td>$chave[titulo]</td>
+                                <td>$chave[ano_cri]</td>
+                                <td>$chave[qtd_paginas]</td>
+                                <td>$chave[autor]</td>
                             
                             </tr>";
 
