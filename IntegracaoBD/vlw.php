@@ -34,22 +34,30 @@
         <tbody>
 
                 <?php
-                
-                    foreach($dados as $chave){
+
+                    if(count($dados) == 0){
+                        echo "<h1>Banco Vazio</h1>";
+                    } else {
+
+
+                        foreach($dados as $chave){
 
                             //tem que fazer echo junto com o tr se não a table aquebra
-                        echo "
-                            <tr>
-                            
-                                <th scope='row'>$chave[id_livro]</th>
-                                <td>$chave[titulo]</td>
-                                <td>$chave[ano_cri]</td>
-                                <td>$chave[qtd_paginas]</td>
-                                <td>$chave[autor]</td>
-                            
-                            </tr>";
+                            echo "
+                                <tr>
+
+                                    <th scope='row'>$chave[id_livro]</th>
+                                    <td>$chave[titulo]</td>
+                                    <td>$chave[ano_cri]</td>
+                                    <td>$chave[qtd_paginas]</td>
+                                    <td>$chave[autor]</td>
+
+                                </tr>";
+
+                         }
 
                     }
+
                 
                 ?>
                 
