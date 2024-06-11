@@ -37,6 +37,7 @@
                 
                     foreach($dados as $chave => $valor){
 
+                            //tem que fazer echo junto com o tr se não a table aquebra
                         echo "
                             <tr>
                             
