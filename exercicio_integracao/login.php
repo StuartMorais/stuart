@@ -19,15 +19,16 @@
       
     
       if($_SERVER['REQUEST_METHOD'] == "POST"){
+        
         $email = $_POST['email'];
         $senha = md5($_POST['senha']);
         
-        $sql = $pdo->prepare("SELECT email_aluno, senha FROM formulario WHERE email_aluno = ? AND senha = ?;");
-        $sql->execute($email, $senha);
+        $sql = $pdo->prepare("SELECT * FROM formulario WHERE email_aluno = ? AND senha = ?");
+        $sql->execute([$email, $senha]);
 
-        $dados = $sql->fetchAll();
+        $dados = $sql->fetch();
     
-        if($dados == $email AND $senha){
+        if($dados && $dados['email_aluno'] == $email && $dados['senha'] == $senha){
           header('location:vlw.php');
         } else {
           echo "senha errada";
