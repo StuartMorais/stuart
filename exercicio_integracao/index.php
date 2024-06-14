@@ -110,7 +110,7 @@
         <div class="col-md-4">
             <label for="inputState" class="form-label">Estado</label>
             <select id="inputState" name="estado" class="form-select">
-                <option selected>Escolha...</option>
+                <option selected disabled>Escolha...</option>
                 <option>Paraíba</option>
                 <option>Pernambuco</option>
                 <option>São Paulo</option>
@@ -163,15 +163,17 @@
                         <td>".$valor['cidade']."</td>
                         <td>".$valor['estado']."</td>
                         <td>".$valor['cep']."</td>
-                        <td><a href='#'>Atualizar</a> | <a href='#'>Remover</a></td>
+                        <td><a href='#'>Atualizar</a> | <button type='submit' name='$valor['']'> delete </button></td>
                     </tr>
                 </tbody>";
         }
-        echo '</table>';
-         
-                
+        echo '</table>';             
     }else{
         echo "<p>Nenhum usuário encontrado</p>";
+    }
+
+    if(isset($_POST['deletebtn'])){
+        $delete_stmt = $pdo->prepare("DELETE FROM formulario WHERE id_aluno = :id");
     }
 
 ?>
